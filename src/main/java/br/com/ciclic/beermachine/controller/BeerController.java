@@ -71,7 +71,7 @@ public class BeerController {
 
     @GetMapping(value = "/beers", params = {"page", "size"})
     public List<Beer> findPaginated(@RequestParam("page") int page, @RequestParam("size") int size) {
-        PageRequest pageRequest = new PageRequest.of(page, size, Sort.Direction.ASC,"beerStyle");
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC,"beerStyle");
         Page<Beer> beers = beerRepository.findAll(pageRequest);
         return beers.getContent();
     }
