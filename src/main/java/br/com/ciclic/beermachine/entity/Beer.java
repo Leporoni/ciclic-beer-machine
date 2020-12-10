@@ -1,44 +1,75 @@
 package br.com.ciclic.beermachine.entity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
-
 @Entity
-@Data
-@NoArgsConstructor
 public class Beer {
 
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY.AUTO)
     @Column(name = "ID", nullable = false)
     private Long id;
 
-    @Getter
-    @Setter
     @Column(name = "BEER_STYLE", unique = true)
     private String beerStyle;
 
-    @Getter
-    @Setter
     @Column(name = "TEMP_MIN")
     private Integer temperatureMin;
 
-    @Getter
-    @Setter
     @Column(name = "TEMP_MAX")
     private Integer temperatureMax;
 
-    @Getter
-    @Setter
     @Transient
     private int targetTemperature;
 
-    public int getDifference() {
+    public Beer() {
+    }
+
+    public Beer(String beerStyle, Integer temperatureMin, Integer temperatureMax) {
+        this.beerStyle = beerStyle;
+        this.temperatureMin = temperatureMin;
+        this.temperatureMax = temperatureMax;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBeerStyle() {
+        return beerStyle;
+    }
+
+    public void setBeerStyle(String beerStyle) {
+        this.beerStyle = beerStyle;
+    }
+
+    public Integer getTemperatureMin() {
+        return temperatureMin;
+    }
+
+    public void setTemperatureMin(Integer temperatureMin) {
+        this.temperatureMin = temperatureMin;
+    }
+
+    public Integer getTemperatureMax() {
+        return temperatureMax;
+    }
+
+    public void setTemperatureMax(Integer temperatureMax) {
+        this.temperatureMax = temperatureMax;
+    }
+
+    public int getTargetTemperature() {
+        return targetTemperature;
+    }
+
+    public void setTargetTemperature(int targetTemperature) {
+        this.targetTemperature = targetTemperature;
+    }
+
+        public int getDifference() {
         return (targetTemperature >= temperatureMin && targetTemperature <= temperatureMax) ? 0 : lessDifference(targetTemperature);
     }
 
