@@ -27,13 +27,13 @@ public class BeerController {
     @Autowired
     private BeerRepository beerRepository;
 
-    @PostMapping("/beers")
+    @PutMapping("/beers")
     public Beer createOrUpdateBeer(@RequestBody @Validated Beer beer) {
 
         return beerRepository.save(beer);
     }
 
-    @PutMapping("/beers")
+    @PostMapping("/beers")
     public List<Beer> createOrUpdateBeer(@RequestBody Beer[] beers) {
         List<Beer> response = new ArrayList();
         for (Beer beer : beers) {
