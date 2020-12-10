@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface BeerRepository extends JpaRepository<Beer, Long> {
     Beer findByBeerStyleContainingIgnoreCase(String beerStyle);
 
-    Optional<Beer> findById(Integer id);
+    Optional<Beer> findById(Long id);
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 }

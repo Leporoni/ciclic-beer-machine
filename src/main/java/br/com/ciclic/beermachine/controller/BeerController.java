@@ -29,6 +29,7 @@ public class BeerController {
 
     @PostMapping("/beers")
     public Beer createOrUpdateBeer(@RequestBody @Validated Beer beer) {
+
         return beerRepository.save(beer);
     }
 
@@ -38,22 +39,22 @@ public class BeerController {
         for (Beer beer : beers) {
             response.add(beerRepository.save(beer));
         }
-
         return response;
     }
 
     @DeleteMapping("/beers/{id}")
-    public void deleteBeer(@PathVariable Integer id) {
+    public void deleteBeer(@PathVariable Long id) {
         beerRepository.deleteById(id);
     }
 
     @GetMapping("/beers")
     public List<Beer> retrieveAllBeers() {
+
         return beerRepository.findAll();
     }
 
     @GetMapping("/beers/{id}")
-    public ResponseEntity<Beer> retrieveBeer(@PathVariable Integer id) {
+    public ResponseEntity<Beer> retrieveBeer(@PathVariable Long id) {
         Object body;
         HttpStatus status = HttpStatus.OK;
 
@@ -76,8 +77,9 @@ public class BeerController {
         return beers.getContent();
     }
 
-    @GetMapping("/best-beers/{temperature}")
+    @GetMapping("/temp-beers/{temperature}")
     public BeerDTO retrieveBestBeer(@PathVariable Integer temperature) {
+
         return beerService.retrieveBeer(temperature);
     }
 }

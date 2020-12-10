@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "BEER")
 public class Beer {
 
     public Beer() {
@@ -17,12 +18,12 @@ public class Beer {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
     private Long id;
 
     @NotNull(message = "Estilo de cerveja é obrigatório")
-    @Column(name = "BEER_STYLE", unique = true)
+    @Column(name = "BEER_STYLE")
     private String beerStyle;
 
     @NotNull(message = "Temperatura mínima é obrigatório")
@@ -76,7 +77,7 @@ public class Beer {
         this.targetTemperature = targetTemperature;
     }
 
-        public int getDifference() {
+    public int getDifference() {
         return (targetTemperature >= temperatureMin && targetTemperature <= temperatureMax) ? 0 : lessDifference(targetTemperature);
     }
 
