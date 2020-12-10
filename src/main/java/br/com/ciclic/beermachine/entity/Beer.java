@@ -1,26 +1,13 @@
 package br.com.ciclic.beermachine.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 @Entity
 public class Beer {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY.AUTO)
-    @Column(name = "ID", nullable = false)
-    private Long id;
-
-    @Column(name = "BEER_STYLE", unique = true)
-    private String beerStyle;
-
-    @Column(name = "TEMP_MIN")
-    private Integer temperatureMin;
-
-    @Column(name = "TEMP_MAX")
-    private Integer temperatureMax;
-
-    @Transient
-    private int targetTemperature;
-
     public Beer() {
+        super();
     }
 
     public Beer(String beerStyle, Integer temperatureMin, Integer temperatureMax) {
@@ -28,6 +15,26 @@ public class Beer {
         this.temperatureMin = temperatureMin;
         this.temperatureMax = temperatureMax;
     }
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID", nullable = false)
+    private Long id;
+
+    @NotNull(message = "Estilo de cerveja é obrigatório")
+    @Column(name = "BEER_STYLE", unique = true)
+    private String beerStyle;
+
+    @NotNull(message = "Temperatura mínima é obrigatório")
+    @Column(name = "TEMP_MIN")
+    private Integer temperatureMin;
+
+    @NotNull(message = "Temperatura máxima é obrigatório")
+    @Column(name = "TEMP_MAX")
+    private Integer temperatureMax;
+
+    @Transient
+    private int targetTemperature;
 
     public Long getId() {
         return id;
