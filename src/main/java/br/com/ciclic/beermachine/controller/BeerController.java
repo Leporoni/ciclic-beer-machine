@@ -28,13 +28,13 @@ public class BeerController {
     private BeerRepository beerRepository;
 
     @PutMapping("/beers")
-    public Beer createOrUpdateBeer(@RequestBody @Validated Beer beer) {
+    public Beer updateBeer(@RequestBody @Validated Beer beer) {
 
         return beerRepository.save(beer);
     }
 
     @PostMapping("/beers")
-    public List<Beer> createOrUpdateBeer(@RequestBody Beer[] beers) {
+    public List<Beer> createBeer(@RequestBody Beer[] beers) {
         List<Beer> response = new ArrayList();
         for (Beer beer : beers) {
             response.add(beerRepository.save(beer));
@@ -47,7 +47,7 @@ public class BeerController {
         beerRepository.deleteById(id);
     }
 
-    @GetMapping("/beers")
+    @GetMapping("/list-beers")
     public List<Beer> retrieveAllBeers() {
 
         return beerRepository.findAll();
@@ -71,14 +71,14 @@ public class BeerController {
     }
 
     @GetMapping(value = "/beers", params = {"page", "size"})
-    public List<Beer> findPaginated(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public List<Beer> retrievePaginatedBeers(@RequestParam("page") int page, @RequestParam("size") int size) {
         PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC,"beerStyle");
         Page<Beer> beers = beerRepository.findAll(pageRequest);
         return beers.getContent();
     }
 
     @GetMapping("/temp-beers/{temperature}")
-    public BeerDTO retrieveBestBeer(@PathVariable Integer temperature) {
+    public BeerDTO retrieveTempBeer(@PathVariable Integer temperature) {
 
         return beerService.retrieveBeer(temperature);
     }
