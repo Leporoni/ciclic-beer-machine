@@ -1,5 +1,5 @@
 # ciclic-beer-machine
-Microservice to check the ideal temperature of each beer
+API to check the ideal temperature of each beer.
 
 Para rodar a API é necessário:
 
