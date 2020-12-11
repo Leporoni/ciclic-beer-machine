@@ -17,6 +17,17 @@ public class Beer {
         this.temperatureMax = temperatureMax;
     }
 
+    public int getDifference() {
+        return (targetTemperature >= temperatureMin
+                && targetTemperature <= temperatureMax) ? 0 : lessDifference(targetTemperature);
+    }
+
+    private int lessDifference(int temperature) {
+        int min = Math.abs(temperatureMin - temperature);
+        int max = Math.abs(temperatureMax - temperature);
+        return Math.min(min, max);
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
@@ -38,6 +49,7 @@ public class Beer {
     private int targetTemperature;
 
     public Long getId() {
+
         return id;
     }
 
@@ -75,15 +87,5 @@ public class Beer {
 
     public void setTargetTemperature(int targetTemperature) {
         this.targetTemperature = targetTemperature;
-    }
-
-    public int getDifference() {
-        return (targetTemperature >= temperatureMin && targetTemperature <= temperatureMax) ? 0 : lessDifference(targetTemperature);
-    }
-
-    private int lessDifference(int temperature) {
-        int min = Math.abs(temperatureMin - temperature);
-        int max = Math.abs(temperatureMax - temperature);
-        return Math.min(min, max);
     }
 }
