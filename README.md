@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Leporoni/ciclic-beer-machine.svg?branch=main)](https://travis-ci.org/Leporoni/ciclic-beer-machine)
+
 # ciclic-beer-machine
 API to check the ideal temperature of each beer.
 
