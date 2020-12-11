@@ -3,9 +3,9 @@ Microservice to check the ideal temperature of each beer
 
 Para rodar a API é necessário:
 
-Java 8 /n
-Maven
-Spring
+Java 8,
+Maven,
+Spring,
 IDE (utilizo IntelliJ IDEA Community)
 
 Faça o clone do repositorio para local e importe pra sua IDE preferida.
